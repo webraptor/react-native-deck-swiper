@@ -56,20 +56,20 @@ With respect to bugfixes and further developments, please check the [To Do](http
 
 ### Event callbacks
 
-| Props             | type   | description                                                                           | default |
-| :---------------- | :----- | :------------------------------------------------------------------------------------ | :------ |
-| onSwipedAll       | func   | function to be called when all cards have been swiped                                 |         | () => {} |
-| onSwiped          | func   | function to be called when a card is swiped. it receives the swiped card index        |         | (cardIndex) => {} |
-| onSwipedAborted   | func   | function to be called when a card is released before reaching the threshold           |         | () => {} |
-| onSwipedLeft      | func   | function to be called when a card is swiped left. it receives the swiped card index   |         | (cardIndex) => {} |
-| onSwipedRight     | func   | function to be called when a card is swiped right. it receives the swiped card index  |         | (cardIndex) => {} |
-| onSwipedTop       | func   | function to be called when a card is swiped top. it receives the swiped card index    |         | (cardIndex) => {} |
-| onSwipedBottom    | func   | function to be called when a card is swiped bottom. it receives the swiped card index |         | (cardIndex) => {} |
-| onSwiping         | func   | function to be called when a card is being moved. it receives X and Y positions       |         | (x, y) => {} |
-| dragStart         | func   | function to be called when drag start                                       |        |
-| dragEnd           | func   | function to be called when drag end
-| onTapCard         | func   | function to be called when tapping a card. it receives the tapped card index          |         | (cardIndex) => {} |
-| onTapCardDeadZone | number | maximum amount of movement before a tap is no longer recognized as a tap              | 5       |
+| Props             | type   | description                                                                                                        | default |
+| :---------------- | :----- | :----------------------------------------------------------------------------------------------------------------- | :----------- |
+| onSwipedAll       | func   | function to be called when all cards have been swiped                                                              | () => {} |
+| onSwiped          | func   | function to be called when a card is swiped. it receives the swiped card index                                     | (cardIndex) => {} |
+| onSwipedAborted   | func   | function to be called when a card is released before reaching the threshold                                        | () => {} |
+| onSwipedLeft      | func   | function to be called when a card is swiped left. it receives the swiped card index                                | (cardIndex) => {} |
+| onSwipedRight     | func   | function to be called when a card is swiped right. it receives the swiped card index                               | (cardIndex) => {} |
+| onSwipedTop       | func   | function to be called when a card is swiped top. it receives the swiped card index                                 | (cardIndex) => {} |
+| onSwipedBottom    | func   | function to be called when a card is swiped bottom. it receives the swiped card index                              | (cardIndex) => {} |
+| onSwiping         | func   | function to be called when a card is being moved. it receives X and Y positions and card index of the current card | (x, y, cardIndex) => {} |
+| dragStart         | func   | function to be called when drag start                                                                              | () => {} |
+| dragEnd           | func   | function to be called when drag end                                                                                | () => {} |
+| onTapCard         | func   | function to be called when tapping a card. it receives the tapped card index                                       | (cardIndex) => {} |
+| onTapCardDeadZone | number | maximum amount of movement before a tap is no longer recognized as a tap                                           | 5       |
 
 ### Swipe animation props
 
