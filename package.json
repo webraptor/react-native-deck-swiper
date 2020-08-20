@@ -3,6 +3,7 @@
     "version": "1.7.1",
     "description": "Awesome tinder like card swiper for react-native. Highly Customizable!",
     "main": "index.js",
+    "types": "index.d.ts",
     "scripts": {
         "test": "jest --coverage",
         "lint": "standard --verbose | snazzy",
