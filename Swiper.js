@@ -138,8 +138,8 @@ class Swiper extends Component {
   createAnimatedEvent = () => {
     const { horizontalSwipe, verticalSwipe } = this.props
     const { x, y } = this.state.pan
-    const dx = horizontalSwipe ? x : new Animated.Value(0)
-    const dy = verticalSwipe ? y : new Animated.Value(0)
+    const dx = horizontalSwipe ? x : new Animated.Value(0) //0
+    const dy = verticalSwipe ? y : new Animated.Value(0) //0
     return { dx, dy }
   }
 
@@ -195,7 +195,11 @@ class Swiper extends Component {
       })
     }
 
-    return Animated.event([null, this.createAnimatedEvent()])(
+    return Animated.event([null, this.createAnimatedEvent()], {
+      listener: () => null,
+      useNativeDriver: false
+    })
+    (
       event,
       gestureState
     )
@@ -344,7 +348,8 @@ class Swiper extends Component {
     Animated.spring(this.state.pan, {
       toValue: 0,
       friction: this.props.topCardResetAnimationFriction,
-      tension: this.props.topCardResetAnimationTension
+      tension: this.props.topCardResetAnimationTension,
+      useNativeDriver: true
     }).start(cb)
 
     this.state.pan.setOffset({
@@ -416,7 +421,8 @@ class Swiper extends Component {
         x: x * SWIPE_MULTIPLY_FACTOR,
         y: y * SWIPE_MULTIPLY_FACTOR
       },
-      duration: this.props.swipeAnimationDuration
+      duration: this.props.swipeAnimationDuration,
+      useNativeDriver: true
     }).start(() => {
       this.setSwipeBackCardXY(x, y, () => {
         mustDecrementCardIndex = mustDecrementCardIndex
