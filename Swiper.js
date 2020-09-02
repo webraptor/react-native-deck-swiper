@@ -195,10 +195,7 @@ class Swiper extends Component {
       })
     }
 
-    return Animated.event([null, this.createAnimatedEvent()], {
-      useNativeDriver: false
-    })
-    (
+    return Animated.event([null, this.createAnimatedEvent()], { useNativeDriver: false }) (
       event,
       gestureState
     )
