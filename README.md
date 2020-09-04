@@ -20,7 +20,7 @@ Version 2.0.0-beta is technically version 1.7.2 of the package. However, npm rec
 | react-native-deck-swiper      | react-native      | description                                                            |
 | :---------------------------- | :---------------- | :--------------------------------------------------------------------- |
 | <= 2.0.3-beta                 | <= 0.56.x         | should install **react-native-view-overflow** and set **useViewOverflow** _true_ |
-| >= 2.0.4-beta                 | => 0.57.x         | no longer requires react-native-view-overflow; **useViewOverflow removed** |
+| >= 2.0.4                      | => 0.57.x         | no longer requires react-native-view-overflow; **useViewOverflow removed** |
 
 ## Issues
 
