@@ -75,6 +75,7 @@ With respect to bugfixes and further developments, please check the [To Do](http
 | onSwipedTop       | func   | function to be called when a card is swiped top. it receives the swiped card index    |         | (cardIndex) => {} |
 | onSwipedBottom    | func   | function to be called when a card is swiped bottom. it receives the swiped card index |         | (cardIndex) => {} |
 | onSwiping         | func   | function to be called when a card is being moved. it receives X and Y positions       |         | (x, y) => {} |
+| onSwipeGuesterState | func   | function to be called when a card is being moved. it receives dx and dy from guesterstate in onPanResponderMove       |         | (x, y) => {} |
 | dragStart         | func   | function to be called when drag start                                       |        |
 | dragEnd           | func   | function to be called when drag end
 | onTapCard         | func   | function to be called when tapping a card. it receives the tapped card index          |         | (cardIndex) => {} |
