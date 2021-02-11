@@ -16,7 +16,9 @@ const LABEL_TYPES = {
 const SWIPE_MULTIPLY_FACTOR = 4.5
 
 const calculateCardIndexes = (firstCardIndex, cards) => {
-  firstCardIndex = firstCardIndex || 0
+  firstCardIndex = firstCardIndex || 0  
+  //console.log('currentCard'+firstCardIndex)
+  
   const previousCardIndex = firstCardIndex === 0 ? cards.length - 1 : firstCardIndex - 1
   const secondCardIndex = firstCardIndex === cards.length - 1 ? 0 : firstCardIndex + 1
   return { firstCardIndex, secondCardIndex, previousCardIndex }
@@ -37,7 +39,7 @@ const rebuildStackAnimatedValues = (props) => {
 class Swiper extends Component {
   constructor (props) {
     super(props)
-
+    //console.log(props)
     this.state = {
       ...calculateCardIndexes(props.cardIndex, props.cards),
       pan: new Animated.ValueXY(),
@@ -51,8 +53,8 @@ class Swiper extends Component {
       swipeBackXYPositions: [],
       isSwipingBack: false,
       ...rebuildStackAnimatedValues(props)
+      
     }
-
     this._mounted = true
     this._animatedValueX = 0
     this._animatedValueY = 0
@@ -62,8 +64,8 @@ class Swiper extends Component {
 
     this.initializeCardStyle()
     this.initializePanResponder()
+    this.props.currentCardIndex(props.cardIndex)
   }
-
   shouldComponentUpdate = (nextProps, nextState) => {
     const { props, state } = this
     const propsChanged = (
@@ -543,13 +545,14 @@ class Swiper extends Component {
   onSwipedCallbacks = (swipeDirectionCallback) => {
     const previousCardIndex = this.state.firstCardIndex
     this.props.onSwiped(previousCardIndex, this.state.cards[previousCardIndex])
-
+    
     if (swipeDirectionCallback) {
       swipeDirectionCallback(previousCardIndex, this.state.cards[previousCardIndex])
     }
   }
 
   setCardIndex = (newCardIndex, swipedAllCards) => {
+    this.props.currentCardIndex(newCardIndex)
     if (this._mounted) {
       this.setState(
         {
@@ -884,6 +887,7 @@ Swiper.propTypes = {
   onSwipedRight: PropTypes.func,
   onSwipedTop: PropTypes.func,
   onSwiping: PropTypes.func,
+  currentCardIndex: PropTypes.func,
   onSwipeGuesterState: PropTypes.func,
   onTapCard: PropTypes.func,
   onTapCardDeadZone: PropTypes.number,
@@ -968,6 +972,7 @@ Swiper.defaultProps = {
   onSwipedRight: cardIndex => { },
   onSwipedTop: cardIndex => { },
   onSwiping: () => { },
+  currentCardIndex: () => { },
   onSwipeGuesterState:()=>{},
   onTapCard: (cardIndex) => { },
   onTapCardDeadZone: 5,
