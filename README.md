@@ -69,6 +69,7 @@ With respect to bugfixes and further developments, please check the [To Do](http
 | :---------------- | :----- | :------------------------------------------------------------------------------------ | :------ |
 | onSwipedAll       | func   | function to be called when all cards have been swiped                                 |         | () => {} |
 | onSwiped          | func   | function to be called when a card is swiped. it receives the swiped card index        |         | (cardIndex) => {} |
+| currentCardIndex          | func   | function to be called when a card is shown. it receives the shown card index        |         | (cardIndex) => {} |
 | onSwipedAborted   | func   | function to be called when a card is released before reaching the threshold           |         | () => {} |
 | onSwipedLeft      | func   | function to be called when a card is swiped left. it receives the swiped card index   |         | (cardIndex) => {} |
 | onSwipedRight     | func   | function to be called when a card is swiped right. it receives the swiped card index  |         | (cardIndex) => {} |
