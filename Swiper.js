@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { PanResponder, Text, View, Dimensions, Animated } from 'react-native'
+import { PanResponder, Text, View, Dimensions, Animated, InteractionManager } from 'react-native'
 import PropTypes from 'prop-types'
 import isEqual from 'lodash/isEqual'
 
@@ -82,9 +82,11 @@ class Swiper extends Component {
 
   componentWillUnmount = () => {
     this._mounted = false
-    this.state.pan.x.removeAllListeners()
-    this.state.pan.y.removeAllListeners()
-    this.dimensionsChangeSubscription.remove()
+    InteractionManager.runAfterInteractions(() => {
+      this.state.pan.x.removeAllListeners()
+      this.state.pan.y.removeAllListeners()
+      this.dimensionsChangeSubscription?.remove()
+    })
   }
 
   getCardStyle = () => {
