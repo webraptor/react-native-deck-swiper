@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { PanResponder, Text, View, Dimensions, Animated } from 'react-native'
+import { PanResponder, Text, View, Dimensions, Animated, InteractionManager } from 'react-native'
 import PropTypes from 'prop-types'
 import isEqual from 'lodash/isEqual'
 
@@ -82,11 +82,15 @@ class Swiper extends Component {
     return propsChanged || stateChanged
   }
 
-  componentWillUnmount = () => {
-    this._mounted = false
+  componentWillUnmountAfterInteractions = () => {
     this.state.pan.x.removeAllListeners()
     this.state.pan.y.removeAllListeners()
-    Dimensions.removeEventListener('change', this.onDimensionsChange)
+    this.dimensionsChangeSubscription?.remove()
+  }
+
+  componentWillUnmount = () => {
+    this._mounted = false;
+    InteractionManager.runAfterInteractions(componentWillUnmountAfterInteractions.bind(this));
   }
 
   getCardStyle = () => {
@@ -112,7 +116,7 @@ class Swiper extends Component {
 
   initializeCardStyle = () => {
     // this.forceUpdate()
-    Dimensions.addEventListener('change', this.onDimensionsChange)
+    this.dimensionsChangeSubscription = Dimensions.addEventListener('change', this.onDimensionsChange)
   }
 
   initializePanResponder = () => {
@@ -541,11 +545,20 @@ class Swiper extends Component {
       this.setCardIndex(newCardIndex, false)
     }
   }
+  rebuildStackValues = () => {
+    const stackPositionsAndScales = {}
+    const { stackSize, stackSeparation, stackScale } = this.props
+    for (let position = 0; position < stackSize; position++) {
+      stackPositionsAndScales[`stackPosition${position}`] = new Animated.Value(stackSeparation * position)
+      stackPositionsAndScales[`stackScale${position}`] = new Animated.Value((100 - stackScale * position) * 0.01)
+    }
+    return stackPositionsAndScales
+  }
 
   onSwipedCallbacks = (swipeDirectionCallback) => {
     const previousCardIndex = this.state.firstCardIndex
     this.props.onSwiped(previousCardIndex, this.state.cards[previousCardIndex])
-    
+
     if (swipeDirectionCallback) {
       swipeDirectionCallback(previousCardIndex, this.state.cards[previousCardIndex])
     }
