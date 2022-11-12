@@ -1,5 +1,5 @@
-declare module 'react-native-deck-swiper' {
-  import {StyleProp, ViewStyle} from 'react-native';
+declare module '@acme/react-native-deck-swiper' {
+  import { StyleProp, ViewStyle } from 'react-native';
 
   export interface SwiperProps<T> {
     animateCardOpacity?: boolean;
@@ -79,8 +79,6 @@ declare module 'react-native-deck-swiper' {
     swipeTop: (mustDecrementCardIndex?: boolean) => void;
     swipeBottom: (mustDecrementCardIndex?: boolean) => void;
     jumpToCardIndex: (cardIndex: number) => void;
-    swipeBack: (
-      cb?: (previousCardIndex: number, previousCard: T) => void
-    ) => void;
+    swipeBack: (cb?: (previousCardIndex: number, previousCard: T) => void) => void;
   }
 }
