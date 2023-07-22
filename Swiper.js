@@ -576,10 +576,15 @@ class Swiper extends Component {
   }
 
   resetPanAndScale = () => {
-    const {previousCardDefaultPositionX, previousCardDefaultPositionY} = this.props
-    this.state.pan.setValue({ x: 0, y: 0 })
-    this.state.previousCardX.setValue(previousCardDefaultPositionX)
-    this.state.previousCardY.setValue(previousCardDefaultPositionY)
+      const {previousCardDefaultPositionX, previousCardDefaultPositionY} = this.props
+      this.state.pan.setValue({ x: 0, y: 0 })
+      this.state.pan.setOffset({ x: 0, y: 0})
+      this._animatedValueX = 0
+      this._animatedValueY = 0
+      this.state.previousCardX.setValue(previousCardDefaultPositionX)
+      this.state.previousCardY.setValue(previousCardDefaultPositionY)
+      this.state.pan.x.addListener(value => this._animatedValueX = value.value)
+      this.state.pan.y.addListener(value => this._animatedValueY = value.value)
   }
 
   calculateNextPreviousCardPosition = () => {
