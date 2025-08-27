@@ -74,7 +74,7 @@ declare module 'react-native-deck-swiper' {
     zoomFriction?: number;
   }
 
-  export default class Swiper<T> extends React.Component<SwiperProps<T>> {
+  export default class Swiper<T> extends React.Component<SwiperProps<T> & { children?: React.ReactNode | undefined }> {
     swipeLeft: (mustDecrementCardIndex?: boolean) => void;
     swipeRight: (mustDecrementCardIndex?: boolean) => void;
     swipeTop: (mustDecrementCardIndex?: boolean) => void;
