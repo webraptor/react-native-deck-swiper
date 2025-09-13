@@ -51,17 +51,18 @@ With respect to bugfixes and further developments, please check the [To Do](http
 
 ### Card props
 
-| Props           | type           | description                                                          | required | default |
-| :-------------- | :------------- | :------------------------------------------------------------------- | :------- | :------ |
-| cards           | array          | array of data for the cards to be rendered                           | required |
-| renderCard      | func(cardData, cardIndex) | function to render the card based on the data                        | required |
-| keyExtractor    | func(cardData) | function to get the card's react key                                 |          | null    |
-| cardIndex       | number         | cardIndex to start with                                              |          | 0       |
-| infinite        | bool           | keep swiping indefinitely                                            |          | false   |
-| horizontalSwipe | bool           | enable/disable horizontal swiping                                    |          | true    |
-| verticalSwipe   | bool           | enable/disable vertical swiping                                      |          | true    |
-| showSecondCard  | bool           | enable/disable second card while swiping                             |          | true    |
-| stackSize       | number         | number of underlaying cards to show (showSecondCard must be enabled) |          | 1       |
+| Props             | type           | description                                                          | required | default |
+| :-----------------| :------------- | :------------------------------------------------------------------- | :------- | :------ |
+| cards             | array          | array of data for the cards to be rendered                           | required |
+| renderCard        | func(cardData, cardIndex) | function to render the card based on the data             |          | required |
+| keyExtractor      | func(cardData) | function to get the card's react key                                 |          | null    |
+| cardIndex         | number         | cardIndex to start with                                              |          | 0       |
+| infinite          | bool           | keep swiping indefinitely                                            |          | false   |
+| horizontalSwipe   | bool           | enable/disable horizontal swiping                                    |          | true    |
+| verticalSwipe     | bool           | enable/disable vertical swiping                                      |          | true    |
+| showSecondCard    | bool           | enable/disable second card while swiping                             |          | true    |
+| enableInnerScroll | bool           | enable/disable vertical scroll inside the card                       |          | false   |
+| stackSize         | number         | number of underlaying cards to show (showSecondCard must be enabled) |          | 1       |
 
 ### Event callbacks
 

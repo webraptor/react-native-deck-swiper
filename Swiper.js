@@ -762,12 +762,24 @@ class Swiper extends Component {
   }
 
   pushCardToStack = (renderedCards, index, position, key, firstCard) => {
-    const { cards } = this.props
+    const { cards, onCardScroll } = this.props
     const stackCardZoomStyle = this.calculateStackCardZoomStyle(position)
     const stackCard = this.props.renderCard(cards[index], index)
     const swipableCardStyle = this.calculateSwipableCardStyle()
     const renderOverlayLabel = this.renderOverlayLabel()
-    renderedCards.push(
+    const card = this.props.enableInnerScroll ? (
+      <Animated.ScrollView
+        key={key}
+        style={firstCard ? swipableCardStyle : stackCardZoomStyle}
+        {...this._panResponder.panHandlers}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: 50 }}
+        onScroll={onCardScroll}
+      >
+        {firstCard ? renderOverlayLabel : null}
+        {stackCard}
+      </Animated.ScrollView>
+    ):(
       <Animated.View
         key={key}
         style={firstCard ? swipableCardStyle : stackCardZoomStyle}
@@ -777,6 +789,7 @@ class Swiper extends Component {
         {stackCard}
       </Animated.View>
     )
+    renderedCards.push(card)
   }
 
   renderStack = () => {
@@ -880,6 +893,7 @@ Swiper.propTypes = {
   disableLeftSwipe: PropTypes.bool,
   disableRightSwipe: PropTypes.bool,
   disableTopSwipe: PropTypes.bool,
+  enableInnerScroll: PropTypes.bool,
   goBackToPreviousCardOnSwipeBottom: PropTypes.bool,
   goBackToPreviousCardOnSwipeLeft: PropTypes.bool,
   goBackToPreviousCardOnSwipeRight: PropTypes.bool,
@@ -896,6 +910,7 @@ Swiper.propTypes = {
   keyExtractor: PropTypes.func,
   marginBottom: PropTypes.number,
   marginTop: PropTypes.number,
+  onCardScroll: PropTypes.func,
   onSwiped: PropTypes.func,
   onSwipedAborted: PropTypes.func,
   onSwipedAll: PropTypes.func,
@@ -953,6 +968,7 @@ Swiper.defaultProps = {
   disableLeftSwipe: false,
   disableRightSwipe: false,
   disableTopSwipe: false,
+  enableInnerScroll: false,
   horizontalSwipe: true,
   horizontalThreshold: width / 4,
   goBackToPreviousCardOnSwipeBottom: false,
